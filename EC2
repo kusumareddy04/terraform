@@ -1,0 +1,100 @@
+
+
+variable "instance_ami" {
+
+type = string
+
+default = "ami-018046b953a698135"
+
+}
+
+variable "instance_type" {
+
+type = string
+
+default = "t2.mirco"
+
+}
+
+variable "instance_count" {
+
+type = number
+
+default = 1
+
+}
+
+variable "instance_name" {
+
+type = string
+
+default = "tf-server"
+
+}
+
+resource "aws_instance" "myinstance" {
+
+ami = var.instance_ami
+
+instance_type = var.instance_type
+
+count = var.instance_count
+
+tags = {
+
+Name = var.instance_name
+
+}
+
+}
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+[root@terraform learnterraform]# cat terraform.tfvars
+instance_ami = "ami-018046b953a698135"
+instance_type = "t2.micro"
+instance_count = 1
+instance_name = "tf-server"
+
+[root@terraform learnterraform]# cat variables.tf
+variable "instance_ami" {
+
+type = string
+
+}
+
+variable "instance_type" {
+
+type = string
+
+}
+
+variable "instance_count" {
+
+type = number
+
+}
+
+variable "instance_name" {
+
+type = string
+
+}
+
+[root@terraform learnterraform]# cat main.tf
+resource "aws_instance" "myinstance" {
+
+ami = var.instance_ami
+
+instance_type = var.instance_type
+
+count = var.instance_count
+
+tags = {
+
+Name = var.instance_name
+
+}
+
+}
