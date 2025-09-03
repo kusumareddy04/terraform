@@ -36,3 +36,10 @@ output "selected_instance_type" {
 value = local.instance_type[terraform.workspace]
 
 }
+
+
+-------------------------------------------------------------------
+
+# terraform workspace list
+# terraform workspace new <name>
+# terraform workspace select <name>
