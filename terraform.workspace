@@ -1,0 +1,38 @@
+locals {
+
+instance_type = {
+
+dev = "t2.micro"
+test = "t2.small"
+prod = "t2.medium"
+
+}
+
+}
+
+resource "aws_instance" "myinstance" {
+
+ami = ""
+
+instance_type = local.instance_type[terraform.workspace]
+
+tags = {
+
+name = "${terraform.workspace}-server"
+
+}
+
+}
+
+
+output "instance_workspace" {
+
+value = terraform.workspace
+
+}
+
+output "selected_instance_type" {
+
+value = local.instance_type[terraform.workspace]
+
+}
