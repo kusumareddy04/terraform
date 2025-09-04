@@ -1,14 +1,52 @@
-
 terraform {
 
 backend "s3" {
 
 bucket = "terraform-kusuma-learn"
 
-key = "prod/terraform.tfstate"
+key = "dev/terraform.tfstate"
 
 region = "ap-south-1"
 
 }
+
+}
+
+resource "aws_instance" "myinstance" {
+
+ami = ""
+
+instance_type = "t2.micro"
+
+tags = {
+
+name = "backendexample-1"
+
+}
+}
+
+resource "aws_instance" "mysecondinstance" {
+
+ami = ""
+
+instance_type = "t2.micro"
+
+tags = {
+
+name = "backendexample-2"
+
+}
+
+}
+
+output "instance_ids" {
+
+value = [aws_instance.myinstance.id, aws_instance.mysecondinstance.id]
+
+}
+
+output "instance_names" {
+
+value = [aws_instance.myinstance.tags.name, aws_instance.mysecondinstance.tags.name]
 
 }
