@@ -1,0 +1,25 @@
+#Terraform automatically knows dependencies (like subnet depends on VPC), but sometimes you must force order.
+
+#Example: EC2 should only start after S3 bucket creation.
+
+resource "aws_instance" "myinstance" {
+
+ami = ""
+
+instance_type = "t2.micro"
+
+tags = {
+
+name = "dependson_example"
+
+}
+
+}
+
+resource "aws_s3_bucket" "mybucket" {
+
+bucket = "kusuma-terraform-bkt-test"
+
+depends_on = [aws_s3_bucket.mybucket]
+
+}
