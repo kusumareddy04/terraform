@@ -1,0 +1,24 @@
+#Used to create multiple identical resources.
+
+
+resource "aws_instance" "myinstance" {
+
+ami = ""
+
+instance_type = "t2.micro"
+
+count = 2
+
+tags = {
+
+name = "server-${count.index}"
+
+}
+}
+
+output "instance_names" {
+
+value = aws_instance.myinstance[*].tags.name
+
+}
+
