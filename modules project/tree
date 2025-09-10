@@ -1,0 +1,16 @@
+[root@tf project]# tree
+.
+├── main.tf
+└── modules
+    ├── ec2-instances
+    │   ├── main.tf
+    │   ├── output.tf
+    │   └── variables.tf
+    ├── s3-bucket
+    │   ├── main.tf
+    │   ├── output.tf
+    │   └── variables.tf
+    └── vpc
+        ├── main.tf
+        ├── output.tf
+        └── variables.tf
